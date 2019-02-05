@@ -52,6 +52,12 @@ class Leg():
 		self.elbow.middle()
 		self.shoulder.middle()
 
+	def middle_elbow(self):
+		self.elbow.middle()
+
+	def middle_shoulder(self):
+		self.shoulder.middle()
+
 	def to_state(self, state):
 		forward, up = state
 		if forward:
@@ -95,8 +101,33 @@ class Side():
 		self.middle.to_state(state)
 		self.back.to_state(other_state)
 
+	def middle_elbows(self):
+		self.front.middle_elbow()
+		self.middle.middle_elbow()
+		self.back.middle_elbow()
+
+	def middle_shoulders(self):
+		self.front.middle_shoulders()
+		self.middle.middle_shoulders()
+		self.back.middle_shoulders()
+
+	def middle_all(self):
+		self.middle_elbows()
+		self.middle_shoulders()
+
 class Spider():
 	def __init__(self, left, right):
 		self.right = right
 		self.left = left
 
+	def middle_elbows(self):
+		self.left.middle_elbows()
+		self.right.middle_elbows()
+
+	def middle_shoulders(self):
+		self.left.middle_shoulders()
+		self.right.middle_shoulders()
+
+	def middle_all(self):
+		self.middle_elbows()
+		self.middle_shoulders()
