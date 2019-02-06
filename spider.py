@@ -20,7 +20,7 @@ class Elbow(Joint):
 	def up(self):
 		self.goto(0.5)
 	def down(self):
-		self.goto(-0.5)
+		self.goto(-0.75)
 	def middle(self):
 		self.goto(0)
 
