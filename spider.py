@@ -25,9 +25,9 @@ class Elbow(Joint):
 
 class Shoulder(Joint):
 	def forward(self):
-		self.goto(0.5)
+		self.goto(0.25)
 	def backward(self):
-		self.goto(-0.5)
+		self.goto(-0.25)
 	def middle(self):
 		self.goto(0)
 
