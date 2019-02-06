@@ -17,17 +17,17 @@ class Joint():
 
 class Elbow(Joint):
 	def up(self):
-		self.goto(1)
+		self.goto(0.5)
 	def down(self):
-		self.goto(-1)
+		self.goto(-0.5)
 	def middle(self):
 		self.goto(0)
 
 class Shoulder(Joint):
 	def forward(self):
-		self.goto(1)
+		self.goto(0.5)
 	def backward(self):
-		self.goto(-1)
+		self.goto(-0.5)
 	def middle(self):
 		self.goto(0)
 
@@ -136,6 +136,7 @@ class Spider():
 	def __init__(self, left, right):
 		self.right = right
 		self.left = left
+		self.state = forward_up # left middle
 
 	def middle_elbows(self):
 		self.left.middle_elbows()
@@ -156,3 +157,10 @@ class Spider():
 	def elbows_to(self, value):
 		self.left.elbows_to(value)
 		self.right.elbows_to(value)
+
+	def walk_once(self):
+		right_state = opposite(self.state)
+		self.left.to_walk_state(self.state)
+		self.right.to_walk_state(right_state)
+		self.state = walk_state_forward(self.state)
+
