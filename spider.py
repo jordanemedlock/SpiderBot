@@ -11,7 +11,7 @@ class Joint():
 		lower = self.range_limit[0]
 		higher = self.range_limit[1]
 		value = (value + 1)/2
-		value = (1 - value) if invert else value
+		value = (1 - value) if self.invert else value
 		angle = value * (higher - lower) + lower
 		self.servo.angle = angle
 
@@ -107,9 +107,9 @@ class Side():
 		self.back.middle_elbow()
 
 	def middle_shoulders(self):
-		self.front.middle_shoulders()
-		self.middle.middle_shoulders()
-		self.back.middle_shoulders()
+		self.front.middle_shoulder()
+		self.middle.middle_shoulder()
+		self.back.middle_shoulder()
 
 	def middle_all(self):
 		self.middle_elbows()
