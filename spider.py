@@ -1,3 +1,4 @@
+import time
 
 class Joint():
 	def __init__(self, kit, channel, actuation_range=120, invert=False, range_limit=None):
@@ -163,4 +164,12 @@ class Spider():
 		self.left.to_walk_state(self.state)
 		self.right.to_walk_state(right_state)
 		self.state = walk_state_forward(self.state)
+
+	def walk(self, states_per_second):
+		wait_time = 1 / states_per_second
+		while True:
+			self.walk_once()
+			time.sleep(wait_time)
+
+
 
