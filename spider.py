@@ -48,6 +48,12 @@ class Leg():
 	def down(self):
 		self.elbow.down()
 
+	def elbow_to(self, value):
+		self.elbow.goto(value)
+
+	def shoulder_to(self, value):
+		self.shoulder.goto(value)
+
 	def middle_all(self):
 		self.elbow.middle()
 		self.shoulder.middle()
@@ -115,6 +121,17 @@ class Side():
 		self.middle_elbows()
 		self.middle_shoulders()
 
+	def elbows_to(self, value):
+		self.front.elbow_to(value)
+		self.middle.elbow_to(value)
+		self.back.elbow_to(value)
+
+	def shoulders_to(self, value):
+		self.front.shoulder_to(value)
+		self.middle.shoulder_to(value)
+		self.back.shoulder_to(value)
+
+
 class Spider():
 	def __init__(self, left, right):
 		self.right = right
@@ -131,3 +148,11 @@ class Spider():
 	def middle_all(self):
 		self.middle_elbows()
 		self.middle_shoulders()
+
+	def shoulders_to(self, value):
+		self.left.shoulders_to(value)
+		self.right.shoulders_to(value)
+
+	def elbows_to(self, value):
+		self.left.elbows_to(value)
+		self.right.elbows_to(value)
