@@ -1,4 +1,5 @@
 import time
+from collections import namedtuple
 
 class Joint():
 	def __init__(self, kit, channel, actuation_range=120, invert=False, range_limit=None):
@@ -66,21 +67,27 @@ class Leg():
 		self.shoulder.middle()
 
 	def to_state(self, state):
-		forward, up = state
-		if forward:
-			self.forward()
-		else:
-			self.backward()
-		if up:
-			self.up()
-		else:
-			self.down()
+		self.shoulder.goto(state.shoulder)
+		self.elbow.goto(state.elbow)
 
 
-forward_up = (True, True)
-forward_down = (True, False)
-backward_up = (False, True)
-backward_down = (False, False)
+State = namedtuple('State', ['left', 'right'])
+SideState = namedtuple('SideState', ['front', 'middle', 'back'])
+LegState = namedtuple('LegState', ['elbow', 'shoulder'])
+point_a = LegState(0.5, -0.25) 		# up back
+point_b = LegState(0.5, 0.25) 		# up forward
+point_c = LegState(-0.75, 0.25) 	# down forward
+point_d = LegState(-0.75, -0.25) 	# down back
+
+state_1 = SideState(point_c, point_a, point_c)
+state_2 = SideState(point_d, point_b, point_d)
+state_3 = SideState(point_d, point_c, point_d)
+state_4 = SideState(point_a, point_c, point_a)
+state_5 = SideState(point_b, point_d, point_b)
+state_6 = SideState(point_c, point_d, point_c)
+
+walk_cycle = [state_1, state_2, state_3, state_4, state_5, state_6]
+
 
 def walk_state_forward(state):
 	forward, up = state
@@ -101,12 +108,10 @@ class Side():
 		self.back = back
 
 
-	def to_walk_state(self, state):
-		"""stage is defined by what the middle does"""
-		other_state = opposite(state)
-		self.front.to_state(other_state)
-		self.middle.to_state(state)
-		self.back.to_state(other_state)
+	def to_state(self, state):
+		self.front.to_state(state.front)
+		self.middle.to_state(state.middle)
+		self.back.to_state(state.back)
 
 	def middle_elbows(self):
 		self.front.middle_elbow()
@@ -137,7 +142,8 @@ class Spider():
 	def __init__(self, left, right):
 		self.right = right
 		self.left = left
-		self.state = forward_up # left middle
+		self.left_state = 0
+		self.right_state = 1
 
 	def middle_elbows(self):
 		self.left.middle_elbows()
@@ -160,10 +166,12 @@ class Spider():
 		self.right.elbows_to(value)
 
 	def walk_once(self):
-		right_state = opposite(self.state)
-		self.left.to_walk_state(self.state)
-		self.right.to_walk_state(right_state)
-		self.state = walk_state_forward(self.state)
+		left_state = walk_cycle[self.left_state]
+		right_state = walk_cycle[self.right_state]
+		self.left.to_state(left_state)
+		self.right.to_state(right_state)
+		self.left_state = (self.left_state + 1) % 6
+		self.right_state = (self.right_state + 1) % 6
 
 	def walk(self, states_per_second):
 		wait_time = 1 / states_per_second

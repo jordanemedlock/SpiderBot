@@ -1,7 +1,12 @@
-from adafruit_servokit import ServoKit
 from spider import *
+from sys import argv
 
-kit = ServoKit(channels=16)
+try:
+	from adafruit_servokit import ServoKit
+	kit = ServoKit(channels=16)
+except ImportError:
+	from mock_servo import mock_kit
+	kit = mock_kit
 
 left_front_elbow = Elbow(kit, 8)
 left_front_shoulder = Shoulder(kit, 9)
@@ -29,4 +34,5 @@ left = Side(left_front, left_middle, left_back)
 right = Side(right_front, right_middle, right_back)
 
 spider = Spider(left, right)
+
 
