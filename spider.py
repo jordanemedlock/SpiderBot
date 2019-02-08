@@ -142,8 +142,8 @@ class Spider():
 	def __init__(self, left, right):
 		self.right = right
 		self.left = left
-		self.left_state = 0
-		self.right_state = 2
+		self.left_state = 2
+		self.right_state = 5
 
 	def middle_elbows(self):
 		self.left.middle_elbows()
