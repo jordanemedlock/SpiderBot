@@ -143,7 +143,7 @@ class Spider():
 		self.right = right
 		self.left = left
 		self.left_state = 0
-		self.right_state = 1
+		self.right_state = 2
 
 	def middle_elbows(self):
 		self.left.middle_elbows()
