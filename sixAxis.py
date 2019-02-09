@@ -18,7 +18,7 @@ class sixAxis:
 			name = pygame.joystick.Joystick(i).get_name()
 			if (name.find(searchStr) != -1):
 				pygame.joystick.Joystick(i).init()
-				print pygame.joystick.Joystick(i).get_name() + " initialized"
+				print(pygame.joystick.Joystick(i).get_name() + " initialized")
 				self.connected = True
 				return
 		# no sixAxis controller can be found
