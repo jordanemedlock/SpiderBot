@@ -2,8 +2,14 @@
 
 import pygame
 import time
+import os
 
-class sixAxis:
+os.putenv('SDL_VIDEODRIVER', 'fbcon')
+os.environ['SDL_VIDEODRIVER'] = 'dummy'
+
+
+
+class SixAxis:
 	connected = False
 	
 	def __init__(self):
@@ -12,6 +18,7 @@ class sixAxis:
 		
 		# init pygame
 		pygame.init()
+		pygame.display.set_mode((1,1))
 		
 		numJoysticks = pygame.joystick.get_count()
 		for i in range(0, numJoysticks):
@@ -73,7 +80,7 @@ class sixAxis:
 		19: ['square', 1]
 	}
 	
-	def getEvents(self):
+	def get_events(self):
 		eventList = {}
 		events = pygame.event.get()
 		for event in events:
