@@ -74,10 +74,14 @@ class Leg():
 State = namedtuple('State', ['left', 'right'])
 SideState = namedtuple('SideState', ['front', 'middle', 'back'])
 LegState = namedtuple('LegState', ['elbow', 'shoulder'])
-point_a = LegState(0.5, -0.25) 		# up back
-point_b = LegState(0.5, 0.25) 		# up forward
-point_c = LegState(-0.75, 0.25) 	# down forward
-point_d = LegState(-0.75, -0.25) 	# down back
+up = 0.5
+down = -0.85
+back = -0.25
+forward = 0.25
+point_a = LegState(up, back) 		# up back
+point_b = LegState(up, forward) 	# up forward
+point_c = LegState(down, forward) 	# down forward
+point_d = LegState(down, back) 		# down back
 
 state_1 = SideState(point_c, point_a, point_c)
 state_2 = SideState(point_d, point_b, point_d)
