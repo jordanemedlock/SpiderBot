@@ -34,23 +34,23 @@ class SixAxis:
 	
 	# button map
 	buttons = {
-		0: 'select',
-		1: 'L3',
-		2: 'r3',
-		3: 'start',
-		4: 'dpad_up',
-		5: 'dpad_right',
-		6: 'dpad_down',
-		7: 'dpad_left',
-		8: 'L2',
-		9: 'r2',
-		10: 'L1',
-		11: 'r1',
-		12: 'triangle',
-		13: 'circle',
-		14: 'x',
-		15: 'square',
-		16: 'ps'
+		0: 'x',
+		1: 'o',
+		2: 'triangle',
+		3: 'square',
+		4: 'L1',
+		5: 'R1',
+		6: 'unknown 1',
+		7: 'unknown 2',
+		8: 'select',
+		9: 'start',
+		10: 'ps',
+		11: 'L3',
+		12: 'R3',
+		13: 'dpad_up',
+		14: 'dpad_down',
+		15: 'dpad_left',
+		16: 'dpad_right'
 	}
 
 	# axis map
@@ -61,23 +61,23 @@ class SixAxis:
 	axes = {
 		0: ['L3_horizontal', 1],
 		1: ['L3_vertical', -1],
-		2: ['r3_horizontal', 1],
-		3: ['r3_vertical', -1],
-		4: ['tilt_leftright', 1], # value 0 when controller is level. this is rotation along axis going through centre of controller front to back
-		5: ['tilt_backfront', 1], # value 0 when controller is level. this is rotation along axis going through centre of controller left to right
-		6: ['tilt_combined', -1], # value -1 when level, 1 when flipped. this just combines axes 4 and 5
-		8: ['dpad_up', 1],
-		9: ['dpad_right', 1],
-		10: ['dpad_down', 1],
-		11: ['dpad_left', 1],
-		12: ['L2', 1],
-		13: ['r2', 1],
-		14: ['L1', 1],
-		15: ['r1', 1],
-		16: ['triangle', 1],
-		17: ['circle', 1],
-		18: ['x', 1],
-		19: ['square', 1]
+		2: ['L2', 1],
+		3: ['R3_horizontal', -1],
+		4: ['R3_vertical', 1], # value 0 when controller is level. this is rotation along axis going through centre of controller front to back
+		5: ['R2', 1], # value 0 when controller is level. this is rotation along axis going through centre of controller left to right
+		6: ['unknown 3', -1], # value -1 when level, 1 when flipped. this just combines axes 4 and 5
+		8: ['unknown 4', 1],
+		9: ['unknown 5', 1],
+		10: ['unknown 6', 1],
+		11: ['unknown 7', 1],
+		12: ['unknown 8', 1],
+		13: ['unknown 9', 1],
+		14: ['unknown 10', 1],
+		15: ['unknown 11', 1],
+		16: ['unknown 12', 1],
+		17: ['unknown 13', 1],
+		18: ['unknown 14', 1],
+		19: ['unknown 15', 1]
 	}
 	
 	def get_events(self):
