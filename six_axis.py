@@ -29,7 +29,7 @@ class SixAxis:
 				self.connected = True
 				return
 		# no sixAxis controller can be found
-		print errorStr
+		print(errorStr)
 		pygame.joystick.quit()
 	
 	# button map
