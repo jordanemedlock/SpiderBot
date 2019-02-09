@@ -8,7 +8,7 @@ class sixAxis:
 	
 	def __init__(self):
 		errorStr = "no sixAxis controller initialized. Check to make sure it is connected and correctly paired."
-		searchStr = "PLAYSTATION(R)3 Controller"
+		searchStr = ""
 		
 		# init pygame
 		pygame.init()
